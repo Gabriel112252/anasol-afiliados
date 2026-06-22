@@ -22,9 +22,11 @@
                 class: "text-white/80 hover:text-white text-sm font-medium transition-colors" %>
           </div>
           <div class="flex items-center gap-4">
-            <span class="text-white/50 text-xs hidden sm:block"><%= current_admin&.email %></span>
-            <%= button_to "Sair", admin_logout_path, method: :delete,
-                class: "text-xs text-white/70 hover:text-white border border-white/20 hover:border-white/50 rounded-lg px-3 py-1.5 transition-all" %>
+            <% if defined?(current_admin) && current_admin %>
+              <span class="text-white/50 text-xs hidden sm:block"><%= current_admin.email %></span>
+              <%= button_to "Sair", admin_logout_path, method: :delete,
+                  class: "text-xs text-white/70 hover:text-white border border-white/20 hover:border-white/50 rounded-lg px-3 py-1.5 transition-all" %>
+            <% end %>
           </div>
         </div>
       </div>

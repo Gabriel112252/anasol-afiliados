@@ -1,26 +1,63 @@
-<div class="max-w-2xl mx-auto px-4 py-10">
+<div class="max-w-2xl mx-auto px-4 py-10"
+     style="animation: fadeSlideUp 0.6s ease both;">
+
   <div class="bg-white rounded-3xl border border-gold/20 shadow-lg p-10 text-center">
 
-    <%# Ícone de confirmação %>
-    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+    <%# Ícone animado %>
+    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-6"
+         style="animation: popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) 0.3s both;">
       <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
       </svg>
     </div>
 
-    <h2 class="text-2xl font-bold text-navy mb-3">Cadastro recebido!</h2>
+    <h2 class="text-2xl font-bold text-navy mb-3"
+        style="animation: fadeSlideUp 0.5s ease 0.4s both;">
+      Cadastro recebido!
+    </h2>
 
-    <p class="text-gray-500 leading-relaxed max-w-sm mx-auto">
+    <p class="text-gray-500 leading-relaxed max-w-sm mx-auto"
+       style="animation: fadeSlideUp 0.5s ease 0.55s both;">
       Obrigada pelo interesse no programa
       <strong class="text-navy">Afiliadas Elite Anasol</strong>.
       Nossa equipe entrará em contato em breve pelo WhatsApp ou e-mail cadastrado.
     </p>
 
-    <div class="mt-8 pt-6 border-t border-gray-100">
-      <p class="text-xs text-gray-400 tracking-wide">
-        © Anasol · Programa Afiliadas Elite
-      </p>
+    <p class="mt-6 text-sm text-gray-400"
+       style="animation: fadeSlideUp 0.5s ease 0.7s both;">
+      Redirecionando em <span id="countdown" class="font-semibold text-[#c9a84c]">5</span>s…
+    </p>
+
+    <div class="mt-6 pt-6 border-t border-gray-100"
+         style="animation: fadeSlideUp 0.5s ease 0.8s both;">
+      <p class="text-xs text-gray-400 tracking-wide">© Anasol · Programa Afiliadas Elite</p>
     </div>
 
   </div>
 </div>
+
+<style>
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  (function () {
+    var el = document.getElementById("countdown");
+    var seconds = 5;
+    var interval = setInterval(function () {
+      seconds -= 1;
+      if (el) el.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href = "https://anasol-afiliadaselite.com/";
+      }
+    }, 1000);
+  })();
+</script>
