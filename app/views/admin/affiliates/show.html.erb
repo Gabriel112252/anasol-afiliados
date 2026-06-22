@@ -1,0 +1,85 @@
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h2 class="text-2xl font-bold text-[#0a1f3d]"><%= @affiliate.full_name %></h2>
+    <p class="text-sm text-gray-400 mt-0.5">Cadastrado em <%= @affiliate.created_at.strftime("%d/%m/%Y às %H:%M") %></p>
+  </div>
+  <div class="flex gap-3">
+    <%= link_to "← Voltar", admin_affiliates_path,
+        class: "rounded-xl border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:border-gray-400 transition-colors" %>
+    <%= link_to "Editar", edit_admin_affiliate_path(@affiliate),
+        class: "rounded-xl bg-[#0a1f3d] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0a1f3d]/90 transition-colors" %>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <%# Dados pessoais %>
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">Dados Pessoais</h3>
+    <dl class="space-y-3">
+      <div>
+        <dt class="text-xs text-gray-400">Nome completo</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.full_name %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">CPF</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.cpf %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">E-mail</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.email %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">WhatsApp</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.whatsapp %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">TikTok</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.tiktok %></dd>
+      </div>
+    </dl>
+  </div>
+
+  <%# Endereço %>
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">Endereço</h3>
+    <dl class="space-y-3">
+      <div>
+        <dt class="text-xs text-gray-400">CEP</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.zip_code %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">Logradouro</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5">
+          <%= @affiliate.street %>, <%= @affiliate.number %>
+          <% if @affiliate.complement.present? %> — <%= @affiliate.complement %><% end %>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">Bairro</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.neighborhood %></dd>
+      </div>
+      <div>
+        <dt class="text-xs text-gray-400">Cidade / Estado</dt>
+        <dd class="text-sm font-medium text-[#0a1f3d] mt-0.5"><%= @affiliate.city %> / <%= @affiliate.state %></dd>
+      </div>
+    </dl>
+  </div>
+
+  <%# Status %>
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:col-span-2">
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-4">Status</h3>
+    <div class="flex items-center gap-2">
+      <% if @affiliate.terms_accepted? %>
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-green-50 border border-green-200 px-3 py-1 text-xs font-medium text-green-700">
+          ✓ Termos aceitos
+        </span>
+      <% else %>
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-red-50 border border-red-200 px-3 py-1 text-xs font-medium text-red-600">
+          ✗ Termos não aceitos
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+</div>

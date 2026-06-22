@@ -1,0 +1,23 @@
+<% content_for :title, "Cadastro Afiliadas Elite | Anasol" %>
+
+<div class="min-h-screen bg-[#fafaf8] py-5 md:px-6 md:py-7" data-controller="modal">
+  <div class="max-w-4xl mx-auto">
+
+    <%# ── Título ── %>
+    <div class="mb-5 px-1 text-left md:px-0">
+      <h1 class="text-xl font-extrabold leading-tight text-[#0a1f3d] md:text-3xl">Cadastro Afiliadas Elite</h1>
+      <p class="mt-1 max-w-xl text-sm leading-relaxed text-gray-600 md:text-base">
+        Preencha seus dados para participar do programa exclusivo de afiliadas Anasol.
+      </p>
+    </div>
+
+    <%# ── Form container (substituído pelo Turbo Stream em caso de sucesso) ── %>
+    <div id="form-container">
+      <%= render partial: "landing/form", locals: { affiliate: @affiliate } %>
+    </div>
+
+  </div>
+
+  <%# ── Modal (permanece no DOM após submit) ── %>
+  <%= render "landing/regulamento_modal" %>
+</div>

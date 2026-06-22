@@ -1,0 +1,109 @@
+<%# ── Cabeçalho + busca + CSV ── %>
+<div class="flex flex-col gap-4 mb-6 sm:flex-row sm:items-start sm:justify-between">
+
+  <div>
+    <h2 class="text-2xl font-bold text-[#0a1f3d]">Afiliadas cadastradas</h2>
+    <p class="mt-0.5 text-sm text-gray-400">
+      Exibindo <%= @affiliates.count %> de <%= @affiliates.total_count %>
+      afiliada<%= @affiliates.total_count == 1 ? "" : "s" %>
+      <% if @query.present? %>
+        para "<span class="text-gray-600 font-medium"><%= @query %></span>"
+      <% end %>
+    </p>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-2">
+    <%# Campo de busca %>
+    <%= form_with url: admin_affiliates_path, method: :get, local: true,
+        class: "flex items-center gap-2" do %>
+      <input type="text" name="q" value="<%= @query %>"
+             placeholder="Buscar por nome, CPF, e-mail ou cidade"
+             class="block w-60 rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]">
+      <button type="submit"
+              class="rounded-xl border border-gray-200 px-3 py-2 text-sm text-gray-600 hover:border-[#0a1f3d] hover:text-[#0a1f3d] transition-colors">
+        Buscar
+      </button>
+      <% if @query.present? %>
+        <%= link_to "✕", admin_affiliates_path,
+            class: "text-gray-400 hover:text-gray-600 text-sm leading-none" %>
+      <% end %>
+    <% end %>
+
+    <%# Botão CSV %>
+    <%= link_to admin_affiliates_path(format: :csv, q: @query),
+        class: "inline-flex items-center gap-1.5 rounded-xl bg-[#0a1f3d] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0a1f3d]/90 transition-colors whitespace-nowrap" do %>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+      </svg>
+      Exportar CSV
+    <% end %>
+  </div>
+
+</div>
+
+<%# ── Tabela ou mensagem vazia ── %>
+<% if @affiliates.empty? %>
+  <div class="rounded-2xl border border-gray-200 bg-white p-12 text-center text-gray-400">
+    <% if @query.present? %>
+      Nenhuma afiliada encontrada para
+      "<strong class="text-gray-600"><%= @query %></strong>".
+      <%= link_to "Limpar busca", admin_affiliates_path, class: "text-[#0a1f3d] underline ml-1" %>
+    <% else %>
+      Nenhuma afiliada cadastrada ainda.
+    <% end %>
+  </div>
+<% else %>
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-100 text-sm">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Nome</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">CPF</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">E-mail</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">WhatsApp</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">TikTok</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Cidade/UF</th>
+            <th class="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-500">Termos</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Cadastro</th>
+            <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-50">
+          <% @affiliates.each do |affiliate| %>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3 font-medium text-[#0a1f3d] whitespace-nowrap"><%= affiliate.full_name %></td>
+              <td class="px-4 py-3 text-gray-600 whitespace-nowrap"><%= affiliate.cpf %></td>
+              <td class="px-4 py-3 text-gray-600"><%= affiliate.email %></td>
+              <td class="px-4 py-3 text-gray-600 whitespace-nowrap"><%= affiliate.whatsapp %></td>
+              <td class="px-4 py-3 text-gray-600 whitespace-nowrap"><%= affiliate.tiktok %></td>
+              <td class="px-4 py-3 text-gray-600 whitespace-nowrap"><%= affiliate.city %>/<%= affiliate.state %></td>
+              <td class="px-4 py-3 text-center">
+                <% if affiliate.terms_accepted? %>
+                  <span class="text-green-600 font-bold text-base">✓</span>
+                <% else %>
+                  <span class="text-red-500 font-bold text-base">✗</span>
+                <% end %>
+              </td>
+              <td class="px-4 py-3 text-xs text-gray-400 whitespace-nowrap">
+                <%= affiliate.created_at.strftime("%d/%m/%Y %H:%M") %>
+              </td>
+              <td class="px-4 py-3 text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <%= link_to "Ver", admin_affiliate_path(affiliate),
+                      class: "rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 hover:border-[#0a1f3d] hover:text-[#0a1f3d] transition-colors" %>
+                  <%= link_to "Editar", edit_admin_affiliate_path(affiliate),
+                      class: "rounded-lg border border-[#c9a84c]/40 bg-[#c9a84c]/5 px-3 py-1.5 text-xs font-medium text-[#0a1f3d] hover:bg-[#c9a84c]/15 transition-colors" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <%# Paginação %>
+  <%= paginate @affiliates, params: { q: @query } %>
+<% end %>

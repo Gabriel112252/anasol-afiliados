@@ -1,0 +1,42 @@
+<div class="min-h-[80vh] flex items-center justify-center">
+  <div class="w-full max-w-md">
+
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#0a1f3d] mb-4">
+        <span class="text-[#c9a84c] font-bold text-lg tracking-widest">AN</span>
+      </div>
+      <h1 class="text-2xl font-bold text-[#0a1f3d]">Área Administrativa</h1>
+      <p class="text-sm text-gray-500 mt-1">Anasol Afiliadas</p>
+    </div>
+
+    <% if flash[:alert] %>
+      <div class="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg p-8">
+      <%= form_with url: admin_login_path, method: :post, class: "space-y-5" do |f| %>
+
+        <div>
+          <%= f.label :email, "E-mail", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+          <%= f.email_field :email, required: true, autofocus: true,
+              placeholder: "admin@anasol.com.br",
+              class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+        </div>
+
+        <div>
+          <%= f.label :password, "Senha", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+          <%= f.password_field :password, required: true,
+              placeholder: "••••••••",
+              class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+        </div>
+
+        <%= f.submit "Entrar",
+            class: "w-full rounded-2xl bg-[#0a1f3d] px-6 py-3 text-base font-semibold text-white shadow-md transition-all hover:bg-[#0a1f3d]/90 cursor-pointer" %>
+
+      <% end %>
+    </div>
+
+  </div>
+</div>

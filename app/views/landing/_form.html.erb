@@ -1,0 +1,169 @@
+<%# ── Mensagens de erro (server-side) ── %>
+<% if affiliate.errors.any? %>
+  <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 p-4">
+    <p class="text-sm font-semibold text-red-700">Por favor, corrija os erros abaixo:</p>
+    <ul class="mt-2 space-y-1">
+      <% affiliate.errors.full_messages.each do |msg| %>
+        <li class="text-sm text-red-600">• <%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%# ── Card do formulário ── %>
+<div class="relative overflow-hidden rounded-3xl border border-[rgba(201,168,76,0.14)] p-5 shadow-[0_18px_45px_rgba(82,41,57,0.07)] md:p-12"
+     style="background: radial-gradient(ellipse at 30% 0%, rgba(201,168,76,0.06) 0%, transparent 65%), linear-gradient(180deg, #ffffff 0%, #fafaf8 100%)">
+
+  <%# Detalhe decorativo no canto superior direito %>
+  <div class="pointer-events-none absolute right-0 top-0 h-32 w-32 rounded-tr-3xl border-r-2 border-t-2 border-[rgba(201,168,76,0.12)]"></div>
+
+  <%= form_with model: affiliate, url: create_affiliate_path, method: :post,
+      class: "relative z-10 space-y-6",
+      data: {
+        controller: "form-validation",
+        action: "input->form-validation#validate change->form-validation#validate submit->form-validation#preventInvalidSubmit"
+      } do |f| %>
+
+    <%# Nome completo %>
+    <div>
+      <%= f.label :full_name, class: "block text-sm font-semibold text-[#0a1f3d] mb-1" do %>
+        Nome completo <span class="text-red-400">*</span>
+      <% end %>
+      <%= f.text_field :full_name, required: true,
+          placeholder: "Seu nome completo",
+          class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+    </div>
+
+    <%# CPF + E-mail %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <%= f.label :cpf, class: "block text-sm font-semibold text-[#0a1f3d] mb-1" do %>
+          CPF <span class="text-red-400">*</span>
+        <% end %>
+        <%= f.text_field :cpf, required: true,
+            placeholder: "000.000.000-00", maxlength: 14, inputmode: "numeric",
+            data: { action: "input->form-validation#maskCpf", "form-validation-target": "cpfInput" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+        <p data-form-validation-target="cpfError" class="hidden mt-1 text-xs text-red-500">CPF inválido</p>
+      </div>
+      <div>
+        <%= f.label :email, class: "block text-sm font-semibold text-[#0a1f3d] mb-1" do %>
+          E-mail <span class="text-red-400">*</span>
+        <% end %>
+        <%= f.email_field :email, required: true,
+            placeholder: "seuemail@exemplo.com",
+            data: { "form-validation-target": "emailInput" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+        <p data-form-validation-target="emailError" class="hidden mt-1 text-xs text-red-500">E-mail inválido</p>
+      </div>
+    </div>
+
+    <%# WhatsApp + TikTok %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <%= f.label :whatsapp, class: "block text-sm font-semibold text-[#0a1f3d] mb-1" do %>
+          WhatsApp <span class="text-red-400">*</span>
+        <% end %>
+        <%= f.text_field :whatsapp, required: true,
+            placeholder: "(00) 00000-0000", maxlength: 15, inputmode: "tel",
+            data: { action: "input->form-validation#maskWhatsapp" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+      <div>
+        <%= f.label :tiktok, class: "block text-sm font-semibold text-[#0a1f3d] mb-1" do %>
+          TikTok <span class="text-red-400">*</span>
+        <% end %>
+        <%= f.text_field :tiktok, required: true,
+            placeholder: "@seuperfil",
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+    </div>
+
+    <%# ── Endereço ── %>
+    <div data-controller="cep" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+      <%# Linha 1: CEP + Rua %>
+      <div class="md:col-span-1">
+        <%= f.label :zip_code, "CEP", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <div class="flex items-center gap-2">
+          <%= f.text_field :zip_code, required: true,
+              placeholder: "00000-000", maxlength: 9, inputmode: "numeric",
+              data: { "cep-target": "cep", action: "input->cep#maskCep" },
+              class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+          <div data-cep-target="loading" class="hidden mt-1 shrink-0">
+            <svg class="h-5 w-5 animate-spin text-[#c9a84c]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-3">
+        <%= f.label :street, "Rua / Logradouro", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <%= f.text_field :street, required: true,
+            placeholder: "Logradouro",
+            data: { "cep-target": "street" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+
+      <%# Linha 2: Número + Complemento + Bairro %>
+      <div>
+        <%= f.label :number, "Número", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <%= f.text_field :number, required: true,
+            placeholder: "Nº",
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+      <div>
+        <%= f.label :complement, "Complemento", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <%= f.text_field :complement,
+            placeholder: "Apto, bloco…",
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+      <div class="md:col-span-2">
+        <%= f.label :neighborhood, "Bairro", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <%= f.text_field :neighborhood, required: true,
+            placeholder: "Bairro",
+            data: { "cep-target": "neighborhood" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+
+      <%# Linha 3: Cidade + Estado %>
+      <div class="md:col-span-3">
+        <%= f.label :city, "Cidade", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <%= f.text_field :city, required: true,
+            placeholder: "Cidade",
+            data: { "cep-target": "city" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c]" %>
+      </div>
+      <div>
+        <%= f.label :state, "Estado", class: "block text-sm font-semibold text-[#0a1f3d] mb-1" %>
+        <%= f.text_field :state, required: true,
+            placeholder: "UF", maxlength: 2,
+            data: { "cep-target": "state" },
+            class: "mt-1 block w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#c9a84c] uppercase" %>
+      </div>
+
+    </div>
+
+    <%# ── Aceite de termos ── %>
+    <div class="flex items-start space-x-3">
+      <%= f.check_box :terms_accepted, required: true,
+          class: "mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300 accent-[#0a1f3d] cursor-pointer" %>
+      <label for="affiliate_terms_accepted" class="text-sm text-gray-700 leading-relaxed cursor-pointer">
+        Li e aceito o
+        <button type="button"
+                data-action="modal#open"
+                class="text-[#c9a84c] underline underline-offset-2 hover:opacity-75 cursor-pointer font-medium">
+          Regulamento Programa Afiliadas Elite + Termo de Uso de Imagem
+        </button>
+      </label>
+    </div>
+
+    <%# ── Botão de envio ── %>
+    <%= f.submit "Enviar cadastro",
+        data: { "form-validation-target": "submit" },
+        disabled: true,
+        class: "w-full inline-flex cursor-pointer items-center justify-center rounded-2xl bg-[#0a1f3d] px-6 py-3 text-lg font-semibold text-white shadow-md transition-all hover:bg-[#0a1f3d]/90 disabled:cursor-not-allowed disabled:opacity-50" %>
+
+  <% end %>
+</div>

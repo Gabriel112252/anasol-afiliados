@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Admin · Anasol Afiliadas</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-gray-50">
+
+    <%# ── Topbar ── %>
+    <header class="bg-[#0a1f3d] shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-14">
+          <div class="flex items-center gap-6">
+            <span class="text-[#c9a84c] font-bold tracking-wide text-sm">ANASOL · Admin</span>
+            <%= link_to "Afiliadas", admin_affiliates_path,
+                class: "text-white/80 hover:text-white text-sm font-medium transition-colors" %>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-white/50 text-xs hidden sm:block"><%= current_admin&.email %></span>
+            <%= button_to "Sair", admin_logout_path, method: :delete,
+                class: "text-xs text-white/70 hover:text-white border border-white/20 hover:border-white/50 rounded-lg px-3 py-1.5 transition-all" %>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <%# ── Flash messages ── %>
+    <% if notice.present? %>
+      <div class="bg-green-50 border-b border-green-200 px-4 py-3 text-sm text-green-700 text-center">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="bg-red-50 border-b border-red-200 px-4 py-3 text-sm text-red-700 text-center">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <%# ── Conteúdo ── %>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <%= yield %>
+    </main>
+
+  </body>
+</html>

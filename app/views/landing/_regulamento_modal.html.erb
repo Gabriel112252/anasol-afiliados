@@ -1,0 +1,269 @@
+<%# ── Modal Regulamento + Termo de Uso de Imagem ── %>
+<div data-modal-target="modal"
+     class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
+     data-action="click->modal#closeOnOutsideClick">
+
+  <%# Overlay %>
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true"></div>
+
+  <%# Painel do modal %>
+  <div class="relative bg-white w-full sm:max-w-2xl sm:rounded-3xl rounded-t-3xl shadow-2xl flex flex-col max-h-[92vh] sm:max-h-[85vh]">
+
+    <%# Cabeçalho %>
+    <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100 shrink-0">
+      <div>
+        <h2 class="text-base font-bold text-navy leading-tight">Regulamento + Termo de Uso de Imagem</h2>
+        <p class="text-xs text-gray-400 mt-0.5">Programa Afiliadas Elite Anasol</p>
+      </div>
+      <button type="button"
+              data-action="modal#close"
+              class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:text-navy hover:bg-gray-100 transition-all text-lg font-medium"
+              aria-label="Fechar">
+        ✕
+      </button>
+    </div>
+
+    <%# Conteúdo com scroll %>
+    <div class="overflow-y-auto px-6 py-6 flex-1 text-sm text-gray-600 leading-relaxed space-y-6">
+
+      <%# 1. Objetivo %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">1. Objetivo</h3>
+        <p>O Programa de Afiliados TikTok Shop tem como objetivo escalar vendas, gerar prova social e consolidar presença da marca dentro do TikTok por meio de creators e afiliados, utilizando a estratégia de progressão por performance.</p>
+        <p class="mt-2">O programa é dividido em níveis, com benefícios, responsabilidades e metas claras.</p>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 2. Estrutura dos Níveis %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">2. Estrutura dos Níveis</h3>
+        <p class="mb-4">O programa é estruturado em níveis progressivos, pensados para incentivar performance, constância e crescimento de GMV.</p>
+
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">2.1 Afiliado Performance</h4>
+            <p class="mb-2">Ponto de entrada para qualquer creator ou afiliado que deseja começar a monetizar com a marca no TikTok Shop.</p>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Validar sua capacidade de venda e criação de conteúdo</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Construir histórico de GMV e conversão</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Participar de campanhas abertas e desafios</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">2.2 Afiliados Elite</h4>
+            <p class="mb-2">O nível Elite é o topo do programa — grupo seleto, limitado e altamente desejado.</p>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Acesso a comissões mais altas</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Recebimento de press kit exclusivo</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Prioridade em campanhas, lançamentos e ativações</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Acesso a grupo fechado, treinamentos e suporte direto</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Reconhecimento público como creator parceiro da marca</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 3. Critérios de Entrada %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">3. Critérios de Entrada</h3>
+
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">3.1 Entrada como Afiliado</h4>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Conta ativa no TikTok</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Conformidade com as diretrizes da plataforma</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Conteúdo alinhado ao posicionamento da marca</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Aprovação via TikTok Shop</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">3.2 Afiliado Elite</h4>
+            <p class="mb-2">A entrada no nível Elite pode ocorrer por convite direto ou progressão por performance.</p>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Histórico de vendas comprovado no TikTok Shop</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Conteúdo recorrente e alinhado à marca</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Compromisso com entregas de conteúdo</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 4. Comissões %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-3">4. Comissões</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="border border-gray-100 rounded-2xl p-4">
+            <p class="font-medium text-navy text-xs uppercase tracking-wide mb-2">Afiliado Performance</p>
+            <ul class="space-y-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Vendas orgânicas: <strong class="text-navy">15%</strong></span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Vendas com ADS: <strong class="text-navy">8%</strong></span></li>
+            </ul>
+          </div>
+          <div class="border border-gold/30 bg-gold/5 rounded-2xl p-4">
+            <p class="font-medium text-gold text-xs uppercase tracking-wide mb-2">Afiliado Elite</p>
+            <ul class="space-y-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Vendas orgânicas: <strong class="text-navy">20%</strong></span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Vendas com ADS: <strong class="text-navy">10%</strong></span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 5. Regras de Amostra e Press Kit %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">5. Regras de Amostra e Press Kit</h3>
+
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">5.1 Afiliado Performance</h4>
+            <p>O Afiliado Performance não possui envio automático de amostras ou press kit. A marca poderá liberar envios pontuais apenas em campanhas específicas.</p>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">5.2 Afiliado Elite</h4>
+            <p class="mb-2">O envio do press kit é um benefício condicionado à performance e entregas.</p>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Conteúdo mínimo: 1 vídeo de unboxing + 3 vídeos de cada produto</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Prazo: publicação em até 7 dias corridos após recebimento</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Proibida revenda ou repasse dos produtos</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 6. Metas e Progressão %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">6. Metas e Progressão</h3>
+        <p class="mb-3">A progressão é baseada em mérito comprovado, consistência e impacto real no GMV da marca.</p>
+        <h4 class="font-medium text-navy text-sm mb-1">Progressão para Elite:</h4>
+        <ul class="space-y-1 pl-1">
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Crescimento contínuo de vendas</span></li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Conteúdo recorrente e alinhado ao posicionamento da marca</span></li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Baixa taxa de cancelamento</span></li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Avaliação em janelas mensais consecutivas com validação interna</span></li>
+        </ul>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 7. Penalidades, Rebaixamento e Exclusão %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">7. Penalidades, Rebaixamento e Exclusão</h3>
+
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">7.1 Penalidades Leves</h4>
+            <p class="mb-1">Atraso na entrega, uso incorreto de links, descumprimento leve de diretrizes.</p>
+            <p class="text-gray-500 text-xs"><strong class="text-navy">Consequência:</strong> Advertência, solicitação de correção, perda temporária de benefícios.</p>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">7.2 Penalidades Graves</h4>
+            <p class="mb-1">Não publicação de conteúdos obrigatórios, promessas médicas, revenda de produtos.</p>
+            <p class="text-gray-500 text-xs"><strong class="text-navy">Consequência:</strong> Rebaixamento imediato, redução/bloqueio de comissões, suspensão de envios.</p>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-navy text-sm mb-1">7.3 Fraudes e Má-fé</h4>
+            <p class="mb-1">Compras falsas, manipulação de GMV, uso de bots.</p>
+            <p class="text-gray-500 text-xs"><strong class="text-navy">Consequência:</strong> Exclusão imediata e definitiva do programa.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 8. Regras de Conteúdo e Comunicação %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-3">8. Regras de Conteúdo e Comunicação</h3>
+
+        <div class="space-y-3">
+          <div>
+            <p class="font-medium text-navy text-xs uppercase tracking-wide mb-1">É expressamente proibido:</p>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-red-400 shrink-0">•</span><span>Prometer cura, tratamento médico ou resultados garantidos</span></li>
+              <li class="flex gap-2"><span class="text-red-400 shrink-0">•</span><span>Utilizar linguagem clínica ou médica</span></li>
+              <li class="flex gap-2"><span class="text-red-400 shrink-0">•</span><span>Fazer comparações depreciativas com concorrentes</span></li>
+              <li class="flex gap-2"><span class="text-red-400 shrink-0">•</span><span>Divulgar informações internas ou confidenciais do programa</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="font-medium text-navy text-xs uppercase tracking-wide mb-1">É obrigatório:</p>
+            <ul class="space-y-1 pl-1">
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Linguagem realista, experiencial e transparente</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Uso correto dos produtos</span></li>
+              <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Cumprimento das políticas do TikTok Shop</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 9. Direitos e Reservas da Marca %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">9. Direitos e Reservas da Marca</h3>
+        <ul class="space-y-1 pl-1 mb-3">
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Alterar este regulamento a qualquer momento</span></li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Ajustar comissões, metas e critérios</span></li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Encerrar parcerias sem aviso prévio em caso de descumprimento</span></li>
+          <li class="flex gap-2"><span class="text-gold shrink-0">•</span><span>Utilizar conteúdos produzidos pelos afiliados para fins institucionais e promocionais</span></li>
+        </ul>
+        <p class="text-xs text-gray-500 italic">Nenhum nível, benefício ou comissão é considerado direito adquirido.</p>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 10. Confidencialidade %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">10. Confidencialidade</h3>
+        <p>Informações estratégicas, critérios internos e benefícios exclusivos são confidenciais. É proibida a divulgação de condições comerciais especiais e estratégias internas.</p>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 11. Termo de Uso de Imagem %>
+      <section>
+        <h3 class="font-bold text-navy text-sm mb-2">11. Termo de Uso de Imagem</h3>
+        <div class="space-y-3">
+          <p>Ao se cadastrar no Programa de Afiliados Anasol, a afiliada autoriza, de forma expressa, gratuita e sem limitação territorial, a utilização da sua imagem, voz, vídeos, fotos e demais conteúdos audiovisuais produzidos no contexto da parceria com a marca Anasol.</p>
+          <p>Esta autorização abrange a divulgação, reprodução, edição e veiculação dos conteúdos em qualquer mídia ou plataforma digital — incluindo TikTok, Instagram, YouTube e outros canais institucionais da marca — para fins de publicidade e promoção dos produtos Anasol.</p>
+          <p>A participação no programa implica na aceitação integral deste Termo de Uso de Imagem, que permanece vigente durante toda a parceria e, no que se refere a conteúdos já publicados, após o eventual encerramento da mesma.</p>
+        </div>
+      </section>
+
+      <hr class="border-gray-100">
+
+      <%# 12. Aceite %>
+      <section class="pb-2">
+        <h3 class="font-bold text-navy text-sm mb-2">12. Aceite</h3>
+        <p>A participação no Programa de Afiliados implica na aceitação integral, irrestrita e automática deste regulamento.</p>
+      </section>
+
+    </div>
+
+    <%# Rodapé %>
+    <div class="px-6 py-5 border-t border-gray-100 shrink-0">
+      <button type="button"
+              data-action="modal#close"
+              class="w-full py-3 bg-navy text-white font-semibold rounded-xl hover:bg-navy/90 transition-colors text-sm">
+        Entendi e fechar
+      </button>
+    </div>
+
+  </div>
+</div>

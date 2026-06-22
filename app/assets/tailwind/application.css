@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@source "../../**/*.erb";
+@source "../../**/*.js";
+@source "../../**/*.rb";
+
+@theme {
+  --color-navy: #0a1f3d;
+  --color-gold: #c9a84c;
+  --color-cream: #fafaf8;
+}
