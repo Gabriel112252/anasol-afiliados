@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     post "login",  to: "sessions#create"
     delete "logout", to: "sessions#destroy", as: :logout
 
-    resources :affiliates, only: [:index, :show, :edit, :update]
+    resources :affiliates, only: [:index, :show, :edit, :update] do
+      member do
+        get :acceptance_pdf
+      end
+    end
   end
 end
