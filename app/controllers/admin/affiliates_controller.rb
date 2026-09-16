@@ -1,7 +1,7 @@
 require "csv"
 
 class Admin::AffiliatesController < Admin::BaseController
-  before_action :set_affiliate, only: [:show, :edit, :update]
+  before_action :set_affiliate, only: [:show, :edit, :update, :acceptance_pdf]
 
   def index
     @query      = params[:q].to_s.strip
@@ -32,6 +32,13 @@ class Admin::AffiliatesController < Admin::BaseController
       flash.now[:alert] = "Erro ao atualizar cadastro."
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def acceptance_pdf
+    send_data AffiliateAcceptancePdf.new(@affiliate).render,
+      filename: "comprovante_aceite_anasol_#{@affiliate.id}.pdf",
+      type: "application/pdf",
+      disposition: "attachment"
   end
 
   private
