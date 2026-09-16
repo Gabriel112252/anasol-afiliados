@@ -5,6 +5,7 @@ class LandingController < ApplicationController
 
   def create
     @affiliate = Affiliate.new(affiliate_params)
+    @affiliate.terms_accepted_at = Time.current if @affiliate.terms_accepted?
 
     if @affiliate.save
       respond_to do |format|
