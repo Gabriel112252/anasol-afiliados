@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_22_000003) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_16_131000) do
   create_table "admins", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_22_000003) do
     t.string "city", null: false
     t.string "state", null: false
     t.boolean "terms_accepted", default: false, null: false
+    t.datetime "terms_accepted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cpf"], name: "index_affiliates_on_cpf", unique: true
