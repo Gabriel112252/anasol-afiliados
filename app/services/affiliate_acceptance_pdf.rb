@@ -173,6 +173,11 @@ class AffiliateAcceptancePdf
       "Utilizar conteúdos produzidos pelos afiliados para fins institucionais e promocionais"
     ])
     body(pdf, "Nenhum nível, benefício ou comissão é considerado direito adquirido.")
+    subsection(pdf, "9.1 Alterações de Preços, Comissões e Condições Comerciais")
+    body(pdf, "A Anasol poderá, a qualquer momento e de acordo com sua estratégia comercial, condições de mercado, campanhas, políticas da plataforma TikTok Shop, custos operacionais, posicionamento de produtos ou demais fatores comerciais, alterar os preços dos produtos, percentuais de comissão, condições de campanhas, incentivos, benefícios, critérios de participação e demais condições comerciais disponibilizadas aos afiliados dentro da plataforma TikTok Shop, sem que tais alterações caracterizem descumprimento das condições anteriormente praticadas ou gerem direito adquirido à manutenção dos valores ou percentuais anteriores.")
+    body(pdf, "As alterações realizadas na plataforma TikTok Shop serão aplicáveis conforme as condições e vigência estabelecidas pela própria plataforma e/ou pela Anasol, observadas as regras e políticas vigentes do TikTok Shop.")
+    body(pdf, "A afiliada declara estar ciente de que preços de produtos, percentuais de comissão, campanhas promocionais, incentivos e demais condições comerciais podem sofrer alterações ao longo da parceria, não havendo garantia de manutenção dos mesmos valores, percentuais ou benefícios durante todo o período de participação no Programa de Afiliados.")
+    body(pdf, "Eventuais comissões referentes às vendas serão calculadas de acordo com o percentual e as condições vigentes e efetivamente disponibilizados na plataforma TikTok Shop no momento aplicável à venda, observadas as regras da própria plataforma.")
 
     section(pdf, "10. Confidencialidade")
     body(pdf, "Informações estratégicas, critérios internos e benefícios exclusivos são confidenciais. É proibida a divulgação de condições comerciais especiais e estratégias internas.")
