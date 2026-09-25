@@ -115,9 +115,9 @@ class AffiliateAcceptancePdf
 
     section(pdf, "4. Comissões")
     subsection(pdf, "Afiliado Performance")
-    bullets(pdf, ["Vendas orgânicas: 15%", "Vendas com ADS: 8%"])
+    bullets(pdf, ["Vendas orgânicas: 15%", "Vendas com ADS: 7%"])
     subsection(pdf, "Afiliado Elite")
-    bullets(pdf, ["Vendas orgânicas: 20%", "Vendas com ADS: 10%"])
+    bullets(pdf, ["Vendas orgânicas: 20%", "Vendas com ADS: 8,5%"])
 
     section(pdf, "5. Regras de Amostra e Press Kit")
     subsection(pdf, "5.1 Afiliado Performance")
